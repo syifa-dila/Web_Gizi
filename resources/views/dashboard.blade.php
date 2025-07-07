@@ -13,7 +13,7 @@
                 <h3 class="text-xl font-bold text-center mb-6">Gejala yang Sering Terjadi Akibat Gizi Buruk pada Anak</h3>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 justify-items-center">
                     @for ($i = 1; $i <= 4; $i++)
-                        <img src="{{ asset('images/gejala' . $i . '.jpg') }}" alt="Gejala {{ $i }}" class="w-32 h-32 object-cover border border-gray-400">
+                        <img src="{{ asset('public/images/gejala-1' . $i . '.jpg') }}" alt="Gejala {{ $i }}" class="w-32 h-32 object-cover border border-gray-400">
                     @endfor
                 </div>
             </div>

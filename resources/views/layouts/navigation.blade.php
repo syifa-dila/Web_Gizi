@@ -4,10 +4,11 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="flex items-center space-x-8">
-                        <img src="{{ asset('images/puskesmas.jpg') }}" alt="logo" class="w-14 h-auto">
-                        <span class="text-lg font-bold text-gray-900 tracking-wide">Puskesmas Kademangan</span>
+                <div class="flex items-center space-x-4">
+                    <img src="{{ asset('images/puskesmas.jpg') }}" alt="logo" class="w-14 h-auto">
+                    <span class="text-lg font-bold text-gray-900 tracking-wide">Puskesmas Kademangan</span>
                 </div>
+
 
                 <!-- Navigation Links -->
                 <div class="flex space-x-10 text-sm font-medium text-blue-900">
@@ -15,15 +16,15 @@
                         {{ __('Beranda') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('gejala.create')" :active="request()->routeIs('gejala.create')">
                         {{ __('Gejala') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('Ipenyakit.index')" :active="request()->routeIs('Ipenyakit.index')">
                         {{ __('Informasi Penyakit') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('jam.operasional')" :active="request()->routeIs('jam.operasional')">
                         {{ __('Jam Oprasional') }}
                     </x-nav-link>
                 </div>
