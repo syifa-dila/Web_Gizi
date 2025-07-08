@@ -20,6 +20,12 @@ class GejalaController extends Controller
         return view('gejala.create'); // pastikan file view-mu ada di resources/views/create.blade.php
     }
 
+    public function tes()
+{
+    return view('gejala.tes'); // pastikan kamu punya view ini
+}
+
+
     /**
      * Menyimpan data anak dan lanjut ke tahap berikutnya
      */
@@ -43,16 +49,30 @@ public function store(Request $request)
 
     Session::put('data_anak', $validated);
 
-    return redirect()->route('diagnosis.gejala'); // ganti sesuai halaman selanjutnya
+    return redirect()->route('gejala.tes'); // ganti sesuai halaman selanjutnya
 }
+
+// public function save(Request $request){
+//     // Simpan jawaban ke session (sementara), atau langsung ke tabel jika kamu punya
+//     session([
+//         'jawaban_gejala' => [
+//             'kurus' => $request->kurus,
+//             'lesu' => $request->lesu,
+//             'keriput' => $request->keriput,
+//         ]
+//     ]);
+
+//     // Redirect ke proses diagnosis atau halaman hasil
+//     return redirect()->route('gejala.tes'); // atau diagnosis.hasil jika kamu langsung hitung
+// }
 
 
     /**
      * (Opsional) Menampilkan form gejala (step 2)
      */
-    public function gejala()
-    {
-        $dataAnak = Session::get('data_anak');
-        return view('gejala', compact('dataAnak'));
-    }
+    // public function gejala()
+    // {
+    //     $dataAnak = Session::get('data_anak');
+    //     return view('gejala', compact('dataAnak'));
+    // }
 }

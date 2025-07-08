@@ -34,6 +34,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/gejala/index', [GejalaController::class, 'index'])->name('gejala.index');
     Route::get('/gejala/create', [GejalaController::class, 'create'])->name('gejala.create');
     Route::post('/gejala/store', [GejalaController::class, 'store'])->name('gejala.store');
+    Route::get('/gejala/tes', [GejalaController::class, 'tes'])->name('gejala.tes');
+    Route::get('/gejala/save', [GejalaController::class, 'save'])->name('gejala.save');
+
 });
 
 //InfoPenyakit
