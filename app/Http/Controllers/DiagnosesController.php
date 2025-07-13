@@ -6,7 +6,7 @@ use App\Models\Diagnoses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class DiagnosisController extends Controller
+class DiagnosesController extends Controller
 {
     public function store(Request $request)
     {
@@ -26,13 +26,13 @@ class DiagnosisController extends Controller
         ]);
 
         // 3. Redirect ke halaman hasil
-        return redirect()->route('diagnosis.hasil')->with('success', 'Hasil diagnosis berhasil disimpan.');
+        return redirect()->route('diagnoses.hasil')->with('success', 'Hasil diagnosis berhasil disimpan.');
     }
 
     public function hasil()
     {
-        $diagnosis = Diagnoses::latest()->first(); // atau berdasarkan pasien/session
+        $diagnoses = Diagnoses::latest()->first(); // atau berdasarkan pasien/session
 
-        return view('diagnosis.hasil', compact('diagnosis'));
+        return view('diagnoses.hasil', compact('diagnoses'));
     }
 }

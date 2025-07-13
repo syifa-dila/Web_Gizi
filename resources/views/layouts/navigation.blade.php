@@ -26,6 +26,12 @@
                     <x-nav-link :href="route('jam.operasional')" :active="request()->routeIs('jam.operasional')">
                         {{ __('Jam Operasional') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('gejala.index')" :active="request()->routeIs('gejala.index')">
+                        {{ __('Kelola Gejala') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('gejala.index')" :active="request()->routeIs('gejala.index')">
+                        {{ __('Kelola Gejala') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -95,6 +101,12 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('jam.operasional')" :active="request()->routeIs('jam.operasional')">
                 {{ __('Jam Operasional') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('gejala.index')" :active="request()->routeIs('gejala.index')">
+                {{ __('Kelola Gejala') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('gejala.index')" :active="request()->routeIs('gejala.index')">
+                {{ __('Kelola Gejala') }}
             </x-responsive-nav-link>
         </div>
 
