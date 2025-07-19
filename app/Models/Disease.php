@@ -15,4 +15,11 @@ class Disease extends Model
         'information',
         'suggestion'
     ];
+
+    public function rules()
+{
+    return $this->hasMany(Rule::class);
 }
+
+}
+

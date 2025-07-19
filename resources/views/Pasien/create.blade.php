@@ -1,4 +1,4 @@
-<!-- <x-app-layout>
+<x-app-layout>
     <div class="min-h-screen bg-white py-10 px-4">
         <h1 class="text-xl md:text-2xl font-bold text-center mb-2">Tes Diagnosis Kekurangan Gizi Pada Anak Balita</h1>
         <p class="text-sm text-center mb-6">Terdapat tiga Tabel yang harus Bunda isi untuk mengetahui Penyakit yang dialami sang buah hati</p>
@@ -10,7 +10,7 @@
         <p class="text-sm mb-4">Tolong isi diri anak</p>
         </div>
         <div class="w-full max-w-3xl mx-auto bg-white border border-black rounded-md p-6 shadow-md">
-            <form action="{{ route('penyakit.store') }}" method="POST">
+            <form action="{{ route('pasien.store') }}" method="POST">
                 @csrf
                 <div class="mb-4">
                     <label for="nama" class="block text-sm font-medium">Nama Anak</label>
@@ -76,4 +76,4 @@
             </form>
         </div>
     </div>
-</x-app-layout> -->
+</x-app-layout>

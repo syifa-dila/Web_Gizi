@@ -56,7 +56,7 @@ class GejalaController extends Controller
        public function tes()
     {
         if (!session()->has('pasien_id')) {
-        return redirect()->route('gejala.create')->withErrors('Silakan isi data anak terlebih dahulu.');
+        return redirect()->route('pasien.create')->withErrors('Silakan isi data anak terlebih dahulu.');
     }
 
     $gejalas = Gejala::all(); 
@@ -78,71 +78,6 @@ class GejalaController extends Controller
     return redirect()->route('gejala.index')->with('success', 'Gejala berhasil ditambahkan.');
     }
 
-
-// public function store(Request $request)
-// {
-//     $validated = $request->validate([
-//         'nama' => 'required|string|max:255',
-//         'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
-//         'tanggal_lahir' => 'required|date',
-//         'nama_ibu' => 'required|string|max:255',
-//         'nama_ayah' => 'required|string|max:255',
-//         'alamat' => 'required|string',
-//         'no_kk' => 'required|string|max:30',
-//         'no_tlp' => 'required|string|max:20',
-//         'riwayat_penyakit' => 'nullable|string',
-//         'alergi_makanan' => 'nullable|string',
-//         'alergi_obat' => 'nullable|string',
-//         'berat_badan' => 'required|numeric|min:1',
-//         'tinggi_badan' => 'required|numeric|min:1',
-//     ]);
-
-//     $pasien = Pasiens::create([
-//         'name' => $validated['nama'],
-//         'gender' => $validated['jenis_kelamin'],
-//         'birth_date' => $validated['tanggal_lahir'],
-//         'motherName' => $validated['nama_ibu'],
-//         'fatherName' => $validated['nama_ayah'],
-//         'address' => $validated['alamat'],
-//         'noKK' => $validated['no_kk'],
-//         'phone_number' => $validated['no_tlp'],
-//         'medical_History' => $validated['riwayat_penyakit'],
-//         'medical_Alergi' => $validated['alergi_makanan'],
-//         'drug_allergy' => $validated['alergi_obat'],
-//         'body_weight' => $validated['berat_badan'],
-//         'height' => $validated['tinggi_badan'],
-//     ]);
-
-//         session(['pasien_id' => $pasien->id]);
-
-//     // Session::put('data_anak', $validated);
-
-//     return redirect()->route('gejala.tes')->with('success', 'data pasien berhasil disimpan');
-// }
-
-// public function save(Request $request){
-//     // Simpan jawaban ke session (sementara), atau langsung ke tabel jika kamu punya
-//     session([
-//         'jawaban_gejala' => [
-//             'kurus' => $request->kurus,
-//             'lesu' => $request->lesu,
-//             'keriput' => $request->keriput,
-//         ]
-//     ]);
-
-//     // Redirect ke proses diagnosis atau halaman hasil
-//     return redirect()->route('gejala.tes'); // atau diagnosis.hasil jika kamu langsung hitung
-// }
-
-
-    /**
-     * (Opsional) Menampilkan form gejala (step 2)
-     */
-    // public function gejala()
-    // {
-    //     $dataAnak = Session::get('data_anak');
-    //     return view('gejala', compact('dataAnak'));
-    // }
 
     public function save(Request $request)
 {

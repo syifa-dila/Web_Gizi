@@ -5,18 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Gejala extends Model
+class Admins extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name_symptom', 
-        'code_symptom'
+        'name', 
+        'position',
+        'gender',
+        'birth_date',
+        'phone_number',
+        'address',
     ];
-
-    public function rules()
-{
-    return $this->hasMany(Rule::class);
-}
-
 }
