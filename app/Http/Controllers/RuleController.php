@@ -25,14 +25,16 @@ class RuleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'disease_id' => 'required',
-            'gejala_id' => 'required',
-            'CF_user' => 'required|numeric',
-            'CF_pakar' => 'required|numeric',
-            'combine' => 'nullable|numeric',
+            'disease_id' => 'required|exists:diseases,id',
+            'gejala_id' => 'required|exists:gejalas,id',
+            'cf_pakar' => 'required|numeric|between:0,1',
         ]);
 
-        Rules::create($request->all());
+        Rules::create([
+            'disease_id' => $request->disease_id,
+            'gejala_id' => $request->gejala_id,
+            'cf_pakar' => $request->cf_pakar,
+        ]);
 
         return redirect()->route('rules.index')->with('success', 'Aturan CF berhasil ditambahkan.');
     }
@@ -48,15 +50,18 @@ class RuleController extends Controller
     public function update(Request $request, $id)
     {
         $rule = Rules::findOrFail($id);
+
         $request->validate([
-            'disease_id' => 'required',
-            'gejala_id' => 'required',
-            'CF_user' => 'required|numeric',
-            'CF_pakar' => 'required|numeric',
-            'combine' => 'nullable|numeric',
+            'disease_id' => 'required|exists:diseases,id',
+            'gejala_id' => 'required|exists:gejalas,id',
+            'cf_pakar' => 'required|numeric|between:0,1',
         ]);
 
-        $rule->update($request->all());
+        $rule->update([
+            'disease_id' => $request->disease_id,
+            'gejala_id' => $request->gejala_id,
+            'cf_pakar' => $request->CF_pakar,
+        ]);
 
         return redirect()->route('rules.index')->with('success', 'Data berhasil diperbarui.');
     }
@@ -68,4 +73,5 @@ class RuleController extends Controller
 
         return redirect()->route('rules.index')->with('success', 'Data berhasil dihapus.');
     }
+    
 }

@@ -10,11 +10,11 @@ class Rules extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'CF_user', 
-        'CF_pakar',
-        'combine'
-    ];
+protected $fillable = [
+    'disease_id',
+    'gejala_id',
+    'cf_pakar',
+];
 
         public function disease()
     {

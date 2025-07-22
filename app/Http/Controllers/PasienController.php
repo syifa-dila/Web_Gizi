@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pasiens;
+use Illuminate\Support\Facades\Auth;
+
+
 
 class PasienController extends Controller
 {
@@ -31,24 +34,25 @@ class PasienController extends Controller
         ]);
 
         $pasien = Pasiens::create([
-            'name' => $validated['nama'],
-            'gender' => $validated['jenis_kelamin'],
-            'birth_date' => $validated['tanggal_lahir'],
-            'motherName' => $validated['nama_ibu'],
-            'fatherName' => $validated['nama_ayah'],
-            'address' => $validated['alamat'],
-            'noKK' => $validated['no_kk'],
-            'phone_number' => $validated['no_tlp'],
-            'medical_History' => $validated['riwayat_penyakit'],
-            'medical_Alergi' => $validated['alergi_makanan'],
-            'drug_allergy' => $validated['alergi_obat'],
-            'body_weight' => $validated['berat_badan'],
-            'height' => $validated['tinggi_badan'],
+            'user_id' => Auth::id(),
+            'name' => $request->nama,
+            'gender' => $request->jenis_kelamin,
+            'birth_date' => $request->tanggal_lahir,
+            'motherName' => $request->nama_ibu,
+            'fatherName' => $request->nama_ayah,
+            'address' => $request->alamat,
+            'noKK' => $request->no_kk,
+            'phone_number' => $request->no_tlp,
+            'medical_History' => $request->riwayat_penyakit,
+            'medical_Alergi' => $request->alergi_makanan,
+            'drug_allergy' => $request->alergi_obat,
+            'body_weight' => $request->berat_badan,
+            'height' => $request->tinggi_badan,
         ]);
 
         session(['pasien_id' => $pasien->id]);
 
-        return redirect()->route('gejala.tes')->with('success', 'Data pasien berhasil disimpan');
+        return redirect()->route('diagnoses.form')->with('success', 'Data pasien berhasil disimpan');
     }
 
 }

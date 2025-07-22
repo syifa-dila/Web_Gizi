@@ -14,11 +14,11 @@
             Schema::create('rules', function (Blueprint $table) {
                 $table->id();
                 $table->unsignedBigInteger('disease_id');
-                $table->unsignedBigInteger('gejala_id');
-                $table->decimal('CF_user', 5, 3)->change();
-                $table->decimal('CF_pakar', 5, 3)->change();
-                $table->decimal('combine', 5, 3)->change();
+                $table->unsignedBigInteger('gejala_id'); 
+                // $table->decimal('CF_pakar', 5, 3);
+                $table->float('cf_pakar')->nullable(false);
                 $table->timestamps();
+
                 $table->foreign('disease_id')->references('id')->on('diseases')->onDelete('cascade');
                 $table->foreign('gejala_id')->references('id')->on('gejalas')->onDelete('cascade');
             });

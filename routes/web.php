@@ -7,6 +7,7 @@ use App\Http\Controllers\DiseaseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RuleController;
+use App\Http\Controllers\AlgoritmaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,13 +47,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/gejala/{id}/edit', [GejalaController::class, 'edit'])->name('gejala.edit');
     Route::put('/gejala/{id}', [GejalaController::class, 'update'])->name('gejala.update');
     Route::delete('/gejala/{id}', [GejalaController::class, 'destroy'])->name('gejala.destroy');
-    Route::get('/gejala/tes', [GejalaController::class, 'tes'])->name('gejala.tes');
-    // Route::get('/gejala/save', [GejalaController::class, 'save'])->name('gejala.save');
-    Route::post('/gejala/save', [GejalaController::class, 'save'])->name('gejala.save');
 });
 
+//Diagnosis
 Route::middleware('auth')->group(function (){
-    Route::get('diagnoses/hasil', [DiagnosesController::class, 'hasil'])->name('diagnoses.hasil');
+        // Route::post('/diagnosis/save', [DiagnosesController::class, 'save'])->name('diagnoses.save');
+        // Route::get('/diagnoses/create', [DiagnosesController::class, 'create'])->name('diagnoses.create');
+        // Route::get('/diagnosis/form/{id}', [DiagnosesController::class, 'form'])->name('diagnosis.form');
+        Route::get('/diagnoses/form', [DiagnosesController::class, 'form'])->name('diagnoses.form');
+        Route::post('/diagnoses/hasil', [DiagnosesController::class, 'hasil'])->name('diagnoses.hasil');
+        Route::get('/diagnoses/index', [DiagnosesController::class, 'index'])->name('diagnoses.index');
+        Route::post('/diagnoses/store', [DiagnosesController::class, 'store'])->name('diagnoses.store');
+        Route::post('/diagnoses/proses', [AlgoritmaController::class, 'proses'])->name('diagnoses.proses');
+
+
+
 });
 
 //penyakit
@@ -65,10 +74,11 @@ Route::middleware('auth')->group(function(){
 });
 
 //pasien
-Route::middleware('auth')->group(function(){
+Route::middleware(['auth'])->group(function () {
     Route::get('/pasien/create', [PasienController::class, 'create'])->name('pasien.create');
     Route::post('/pasien/store', [PasienController::class, 'store'])->name('pasien.store');
 });
+
 
 //InfoPenyakit
 Route::middleware('auth')->group(function () {
@@ -85,6 +95,11 @@ Route::middleware('auth')->group(function (){
 Route::middleware('auth')->group(function (){
     Route::get('/rules/index', [RuleController::class, 'index'])->name('rules.index');
     Route::get('/rules/create', [RuleController::class, 'create'])->name('rules.create');
+    Route::post('/rules/store', [RuleController::class, 'store'])->name('rules.store');
+    Route::get('/rules/{id}/edit', [RuleController::class, 'edit'])->name('rules.edit');
+    Route::put('/rules/{id}', [RuleController::class, 'update'])->name('rules.update');
+    Route::delete('/rules/{id}', [RuleController::class, 'destroy'])->name('rules.destroy');
+
 
 });
 

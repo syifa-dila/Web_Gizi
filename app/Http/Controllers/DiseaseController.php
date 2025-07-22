@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Disease;
+use App\Models\Gejala;
 use Illuminate\Http\Request;
 
 class DiseaseController extends Controller
@@ -67,4 +68,11 @@ class DiseaseController extends Controller
 
     return redirect()->back()->with('success', 'Data penyakit berhasil ditambahkan.');
 }
+
+public function gejalas()
+{
+    return $this->belongsToMany(Gejala::class, 'aturan_nilai_cf', 'idPenyakit', 'idGejala')
+                ->withPivot('cfPakar');
+}
+
 }

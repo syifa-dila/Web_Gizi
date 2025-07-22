@@ -16,15 +16,16 @@ return new class extends Migration
             $table->string('code_diagnosis')->unique();
             $table->date('date');
             $table->string('result_diagnosis');
-            $table->string('recommendation')->nullable();
-            $table->unsignedBigInteger('user_id');
-            // $table->unsignedBigInteger('admin_id')->nullable();
-            // $table->unsignedBigInteger('aturan_id')->nullable();
+            $table->unsignedBigInteger('pasiens_id');
+            $table->unsignedBigInteger('gejalas_id');
+            $table->unsignedBigInteger('diseases_id');
+            $table->unsignedBigInteger('rules_id');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            // $table->foreign('admin_id')->references('id')->on('admins')->onDelete('set null');
-            // $table->foreign('aturan_id')->references('id')->on('aturan_cf')->onDelete('set null');
+            $table->foreign('pasiens_id')->references('id')->on('pasiens')->onDelete('cascade');
+            $table->foreign('gejalas_id')->references('id')->on('gejalas')->onDelete('cascade');
+            $table->foreign('diseases_id')->references('id')->on('diseases')->onDelete('cascade');
+            $table->foreign('rules_id')->references('id')->on('rules')->onDelete('cascade');
         });
 
     }

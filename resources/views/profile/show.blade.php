@@ -3,7 +3,7 @@
         <h1 class="text-2xl font-bold mb-6 text-center">Profil Pengguna</h1>
 
         <div class="bg-white rounded shadow p-6 mb-6">
-            <p><strong>Nama:</strong> {{ Auth::user()->name }}</p>
+            <p><strong>Username:</strong> {{ Auth::user()->name }}</p>
             <p><strong>Email:</strong> {{ Auth::user()->email }}</p>
         </div>
 

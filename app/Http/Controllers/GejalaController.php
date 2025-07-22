@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pasiens;
 use App\Models\Gejala;
+use App\Models\Disiase;
 use Illuminate\Support\Facades\Session;
 
 class GejalaController extends Controller
@@ -47,25 +48,6 @@ class GejalaController extends Controller
     return redirect()->route('gejala.index')->with($notification);
     }
 
-    public function create()
-    {
-        return view('gejala.create');
-    }
-
-
-       public function tes()
-    {
-        if (!session()->has('pasien_id')) {
-        return redirect()->route('pasien.create')->withErrors('Silakan isi data anak terlebih dahulu.');
-    }
-
-    $gejalas = Gejala::all(); 
-
-    $pilihan = ['Sangat Yakin', 'Yakin', 'Cukup Yakin', 'Tidak Yakin'];
-
-    return view('gejala.tes', compact('gejalas', 'pilihan'));
-    }
-
      public function store(Request $request)
     {
     $validated = $request->validate([
@@ -78,26 +60,11 @@ class GejalaController extends Controller
     return redirect()->route('gejala.index')->with('success', 'Gejala berhasil ditambahkan.');
     }
 
+// public function penyakits()
+// {
+//     return $this->belongsToMany(Disease::class, 'aturan_nilai_cf', 'idGejala', 'idPenyakit')
+//                 ->withPivot('cfPakar');
+// }
 
-    public function save(Request $request)
-{
-    $pasien_id = session('pasien_id');
-
-    if (!$pasien_id) {
-        return redirect()->route('gejala.create')->withErrors('Data anak belum diisi.');
-    }
-
-    $gejalas = Gejala::all();
-
-    $jawaban = [];
-    foreach ($gejalas as $gejala) {
-        $kode = $gejala->code_symptom;
-        $jawaban[$kode] = $request->input($kode); // contoh: ['GJ01' => 'Yakin', ...]
-    }
-
-    session(['jawaban_gejala' => $jawaban]);
-
-    return redirect()->route('diagnoses.hasil');
-}
 
 }

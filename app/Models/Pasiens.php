@@ -11,6 +11,7 @@ class Pasiens extends Model
     protected $table = 'pasiens';
 
     protected $fillable = [ 
+        'user_id', 
         'name',
         'gender',
         'birth_date',

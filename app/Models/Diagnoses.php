@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Diagnoses extends Model
 {
     use HasFactory;
@@ -15,27 +16,33 @@ class Diagnoses extends Model
         'code_diagnosis',
         'date',
         'result_diagnosis',
-        'recommendation',
-        'user_id',
-        // 'admin_id',
-        // 'aturan_id',
+        'pasiens_id',
+        'gejalas_id',
+        'diseases_id',
+        'rules_id',
     ];
 
-    // Relasi ke Pasien
-    public function user()
+    // Relasi ke pasien
+    public function pasiens()
     {
-        return $this->belongsTo(user::class);
+        return $this->belongsTo(Pasiens::class, 'pasiens_id');
     }
 
-    // Relasi ke Admin
-    // public function admin()
-    // {
-    //     return $this->belongsTo(Admin::class);
-    // }
+    // Relasi ke gejala
+    public function gejala()
+    {
+        return $this->belongsTo(Gejalas::class, 'gejalas_id');
+    }
 
-    // Relasi ke Aturan CF
-    // public function aturan()
-    // {
-    //     return $this->belongsTo(AturanCf::class, 'aturan_id');
-    // }
+    // Relasi ke penyakit
+    public function disease()
+    {
+        return $this->belongsTo(Disease::class, 'diseases_id');
+    }
+
+    // Relasi ke aturan (rule)
+    public function rule()
+    {
+        return $this->belongsTo(Rules::class, 'rules_id');
+    }
 }
