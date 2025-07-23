@@ -48,9 +48,15 @@ class User extends Authenticatable
     ];
 
 
+// public function pasien()
+// {
+//     return $this->hasOne(Pasiens::class, 'user_id');
+// }
+
 public function pasien()
 {
-    return $this->hasOne(Pasiens::class, 'user_id');
+    return $this->hasOne(Pasien::class);
 }
+
 
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Pasiens;
+use App\Models\Pasien;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -33,7 +33,7 @@ class PasienController extends Controller
             'tinggi_badan' => 'required|numeric|min:1',
         ]);
 
-        $pasien = Pasiens::create([
+        $pasien = Pasien::create([
             'user_id' => Auth::id(),
             'name' => $request->nama,
             'gender' => $request->jenis_kelamin,
@@ -52,7 +52,7 @@ class PasienController extends Controller
 
         session(['pasien_id' => $pasien->id]);
 
-        return redirect()->route('diagnoses.form')->with('success', 'Data pasien berhasil disimpan');
+        return redirect()->route('diagnosis.form')->with('success', 'Data pasien berhasil disimpan');
     }
 
 }

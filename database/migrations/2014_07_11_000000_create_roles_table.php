@@ -11,21 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('diseases', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('name_disease')->nullable();
-            $table->string('disease_code')->nullable();
-            $table->text('information')->nullable();
-            $table->text('suggestion')->nullable();
+            $table->string('name', 25);
             $table->timestamps();
         });
     }
-    
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('diseases');
+        Schema::dropIfExists('roles');
     }
 };

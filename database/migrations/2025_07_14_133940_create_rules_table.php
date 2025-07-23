@@ -13,8 +13,8 @@
         {
             Schema::create('rules', function (Blueprint $table) {
                 $table->id();
-                $table->unsignedBigInteger('disease_id');
-                $table->unsignedBigInteger('gejala_id'); 
+                $table->unsignedBigInteger('disease_id')->nullable();
+                $table->unsignedBigInteger('gejala_id')->nullable(); 
                 // $table->decimal('CF_pakar', 5, 3);
                 $table->float('cf_pakar')->nullable(false);
                 $table->timestamps();

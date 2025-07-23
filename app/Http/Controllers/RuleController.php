@@ -60,7 +60,7 @@ class RuleController extends Controller
         $rule->update([
             'disease_id' => $request->disease_id,
             'gejala_id' => $request->gejala_id,
-            'cf_pakar' => $request->CF_pakar,
+            'cf_pakar' => $request->cf_pakar,
         ]);
 
         return redirect()->route('rules.index')->with('success', 'Data berhasil diperbarui.');

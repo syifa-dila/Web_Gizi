@@ -1,13 +1,14 @@
 <?php
 
 use App\Http\Controllers\GejalaController;
-use App\Http\Controllers\DiagnosesController;
+use App\Http\Controllers\DiagnosisController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\DiseaseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RuleController;
 use App\Http\Controllers\AlgoritmaController;
+use App\Http\Controllers\ResultCfController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,9 +35,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 //route Gejala
@@ -51,19 +49,18 @@ Route::middleware('auth')->group(function () {
 
 //Diagnosis
 Route::middleware('auth')->group(function (){
-        // Route::post('/diagnosis/save', [DiagnosesController::class, 'save'])->name('diagnoses.save');
-        // Route::get('/diagnoses/create', [DiagnosesController::class, 'create'])->name('diagnoses.create');
-        // Route::get('/diagnosis/form/{id}', [DiagnosesController::class, 'form'])->name('diagnosis.form');
-        Route::get('/diagnoses/form', [DiagnosesController::class, 'form'])->name('diagnoses.form');
-        Route::post('/diagnoses/hasil', [DiagnosesController::class, 'hasil'])->name('diagnoses.hasil');
-        Route::get('/diagnoses/index', [DiagnosesController::class, 'index'])->name('diagnoses.index');
-        Route::post('/diagnoses/store', [DiagnosesController::class, 'store'])->name('diagnoses.store');
-        Route::post('/diagnoses/proses', [AlgoritmaController::class, 'proses'])->name('diagnoses.proses');
-
-
-
+    Route::get('/diagnosis/form', [DiagnosisController::class, 'form'])->name('diagnosis.form');
+    // Route::post('/diagnosis/proses', [AlgoritmaController::class, 'proses'])->name('diagnosis.proses');
+    Route::post('/diagnosis/proses', [DiagnosisController::class, 'proses'])->name('diagnosis.proses');
+    Route::get('/diagnosis/hasil', [DiagnosisController::class, 'hasil'])->name('diagnosis.hasil');
+    Route::get('/diagnosis/index', [DiagnosisController::class, 'index'])->name('diagnosis.index');
 });
 
+//resultCF
+Route::middleware('auth')->group(function (){
+Route::post('/resultcf/store', [ResultCfController::class, 'store'])->name('resultcf.store');
+Route::get('/resultcf/{pasiens_id}', [ResultCfController::class, 'show'])->name('resultcf.show');
+});
 //penyakit
 Route::middleware('auth')->group(function(){
     Route::get('/penyakit/index', [DiseaseController::class, 'index'])->name('penyakit.index');

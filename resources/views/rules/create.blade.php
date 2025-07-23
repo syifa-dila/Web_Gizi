@@ -25,7 +25,7 @@
 
             <div>
                 <label for="cf_pakar">Nilai CF Pakar</label>
-                <input type="number" step="0.1" min="0" max="1" name="cf_pakar" id="cf_pakar" required>
+                <input type="number" step="0.01" min="0" max="1" name="cf_pakar" id="cf_pakar" required>
 
             </div>
             <div>

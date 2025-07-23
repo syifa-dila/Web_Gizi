@@ -6,16 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 
-class Diagnoses extends Model
+class Diagnosis extends Model
 {
     use HasFactory;
 
-    protected $table = 'diagnoses';
+    protected $table = 'diagnosis';
 
     protected $fillable = [
+        'user_id',
         'code_diagnosis',
         'date',
         'result_diagnosis',
+        'user_id',
         'pasiens_id',
         'gejalas_id',
         'diseases_id',
@@ -23,10 +25,14 @@ class Diagnoses extends Model
     ];
 
     // Relasi ke pasien
-    public function pasiens()
-    {
-        return $this->belongsTo(Pasiens::class, 'pasiens_id');
-    }
+public function pasien()
+{
+    return $this->hasOne(Pasiens::class, 'user_id');
+}
+    public function user()
+{
+    return $this->belongsTo(User::class);
+}
 
     // Relasi ke gejala
     public function gejala()

@@ -18,7 +18,7 @@ class Disease extends Model
 
     public function rules()
 {
-    return $this->hasMany(Rule::class);
+    return $this->hasMany(Rules::class);
 }
 
 }

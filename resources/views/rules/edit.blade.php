@@ -5,32 +5,31 @@
         <form action="{{ route('rules.update', $rule->id) }}" method="POST" class="space-y-4">
             @csrf
             @method('PUT')
-
             <div>
                 <label for="disease_code" class="block font-semibold">Pilih Penyakit</label>
-                <select name="disease_code" id="disease_code" class="w-full border rounded px-3 py-2">
-                    @foreach ($diseases as $disease)
-                        <option value="{{ $disease->disease_code}}" {{ $rule->disease_code == $disease->disease_code ? 'selected' : '' }}>
-                            {{ $disease->disease_code }}
-                        </option>
-                    @endforeach
-                </select>
+<select name="disease_id" id="disease_id" class="w-full border rounded px-3 py-2">
+    @foreach ($diseases as $disease)
+        <option value="{{ $disease->id }}" {{ $rule->disease_id == $disease->id ? 'selected' : '' }}>
+            {{ $disease->disease_code }}
+        </option>
+    @endforeach
+</select>
+
             </div>
 
             <div>
                 <label for="code_symptom" class="block font-semibold">Pilih Gejala</label>
-                <select name="code_symptom" id="code_symptom" class="w-full border rounded px-3 py-2">
+                <select name="gejala_id" id="gejala_id" class="w-full border rounded px-3 py-2">
                     @foreach ($gejalas as $gejala)
-                        <option value="{{ $gejala->code_symptom }}" {{ $rule->code_symptom == $gejala->code_symptom ? 'selected' : '' }}>
-                            {{ $gejala->code_symptom }}
-                        </option>
+                <option value="{{ $gejala->id }}" {{ $rule->gejala_id == $gejala->id ? 'selected' : '' }}>
+                    {{ $gejala->code_symptom }}
+                </option>
                     @endforeach
                 </select>
             </div>
-
             <div>
                 <label for="cf_pakar" class="block font-semibold">Nilai CF Pakar</label>
-                <input type="number" step="0.01" name="cf_pakar" id="cf_pakar" class="w-full border rounded px-3 py-2" value="{{ $rule->CF_pakar }}" required>
+                <input type="number" step="0.01" name="cf_pakar" id="cf_pakar" class="w-full border rounded px-3 py-2" value="{{ old('cf_pakar', $rule->cf_pakar) }}" required>
             </div>
             <div>
                 <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">Update</button>

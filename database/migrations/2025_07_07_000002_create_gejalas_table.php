@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('gejalas', function (Blueprint $table) {
             $table->id();
-            $table->string('name_symptom');
-            $table->string('code_symptom');
+            $table->string('name_symptom')->nullable();
+            $table->string('code_symptom')->nullable();
             $table->timestamps();
         });
     }
