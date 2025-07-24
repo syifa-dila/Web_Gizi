@@ -39,9 +39,13 @@
                 </div>
             </div>
 
-            <div class="mt-6">
+            {{-- Tombol Navigasi --}}
+            <div class="mt-6 flex space-x-4">
                 <a href="{{ route('dashboard') }}" class="inline-block px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
                     Kembali ke Dashboard
+                </a>
+                <a href="{{ route('combination.process', $pasiens_id) }}" class="inline-block px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+                    Lanjut ke Proses Kombinasi CF
                 </a>
             </div>
 

@@ -20,6 +20,9 @@ class Disease extends Model
 {
     return $this->hasMany(Rules::class);
 }
-
+public function combinations()
+{
+    return $this->hasMany(Combination::class, 'diseases_id');
+}
 }
 

@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Gejala;
 
 class Result_cf extends Model
 {
     use HasFactory;
+    protected $table = 'result_cf';
 
     protected $fillable = [
         'pasiens_id',
@@ -26,6 +28,10 @@ public function pasien()
 
     public function gejala()
     {
-        return $this->belongsTo(Gejalas::class, 'gejalas_id');
+        return $this->belongsTo(Gejala::class, 'gejalas_id');
     }
+    public function rules()
+{
+    return $this->hasMany(Rules::class, 'gejala_id', 'gejala_id');
+}
 }

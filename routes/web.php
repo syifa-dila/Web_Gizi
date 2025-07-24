@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RuleController;
 use App\Http\Controllers\AlgoritmaController;
 use App\Http\Controllers\ResultCfController;
+use App\Http\Controllers\CombinationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,7 +51,6 @@ Route::middleware('auth')->group(function () {
 //Diagnosis
 Route::middleware('auth')->group(function (){
     Route::get('/diagnosis/form', [DiagnosisController::class, 'form'])->name('diagnosis.form');
-    // Route::post('/diagnosis/proses', [AlgoritmaController::class, 'proses'])->name('diagnosis.proses');
     Route::post('/diagnosis/proses', [DiagnosisController::class, 'proses'])->name('diagnosis.proses');
     Route::get('/diagnosis/hasil', [DiagnosisController::class, 'hasil'])->name('diagnosis.hasil');
     Route::get('/diagnosis/index', [DiagnosisController::class, 'index'])->name('diagnosis.index');
@@ -59,8 +59,17 @@ Route::middleware('auth')->group(function (){
 //resultCF
 Route::middleware('auth')->group(function (){
 Route::post('/resultcf/store', [ResultCfController::class, 'store'])->name('resultcf.store');
+Route::post('/diagnosis/store', [ResultCfController::class, 'store'])->name('diagnosis.store');
 Route::get('/resultcf/{pasiens_id}', [ResultCfController::class, 'show'])->name('resultcf.show');
 });
+
+//combine
+Route::middleware('auth')->group(function (){
+Route::get('/combination/process/{pasiens_id}', [CombinationController::class, 'process'])->name('combination.process');
+Route::get('/combination/show/{pasiens_id}', [CombinationController::class, 'show'])->name('combinations.show');
+
+});
+
 //penyakit
 Route::middleware('auth')->group(function(){
     Route::get('/penyakit/index', [DiseaseController::class, 'index'])->name('penyakit.index');

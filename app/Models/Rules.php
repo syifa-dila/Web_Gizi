@@ -18,7 +18,9 @@ protected $fillable = [
 
         public function disease()
     {
-        return $this->belongsTo(Disease::class);
+        // return $this->belongsTo(Disease::class);
+            return $this->belongsTo(Disease::class, 'disease_id');
+
     }
 
     public function gejala()
