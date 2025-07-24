@@ -1,11 +1,17 @@
 <?php
 
 namespace Database\Seeders;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Admin;
+use App\Models\Role;
+use App\Models\User;
 
-use Illuminate\Database\Seeder;
+
+
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,7 +21,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-        //AdminSeeder :: class,
+        RoleSeeder::class,
+        AdminSeeder :: class,
         // PasienSeeder::class,
           // DiagnosesSeeder::class,
         // DiagnosisGejalaSeeder::class,

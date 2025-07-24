@@ -25,6 +25,7 @@ class User extends Authenticatable
         'address',
         'email',
         'password',
+        'role_id', // foreign key to roles table
     ];
 
     /**
@@ -57,6 +58,13 @@ public function pasien()
 {
     return $this->hasOne(Pasien::class);
 }
+public function hasRole($role)
+{
+    return $this->role === $role; 
+}
+public function role()
+{
+    return $this->belongsTo(Role::class, 'role_id');
 
-
+}
 }

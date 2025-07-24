@@ -13,19 +13,16 @@ return new class extends Migration
     {
         Schema::create('diagnosis', function (Blueprint $table) {
             $table->id();
-            $table->string('code_diagnosis')->unique();
             $table->date('date');
-            $table->string('result_diagnosis');
+            $table->float('result');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('pasiens_id');
-            $table->unsignedBigInteger('gejalas_id');
             $table->unsignedBigInteger('diseases_id');
-            $table->unsignedBigInteger('rules_id');
             $table->timestamps();
 
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('pasiens_id')->references('id')->on('pasiens')->onDelete('cascade');
-            $table->foreign('gejalas_id')->references('id')->on('gejalas')->onDelete('cascade');
             $table->foreign('diseases_id')->references('id')->on('diseases')->onDelete('cascade');
-            $table->foreign('rules_id')->references('id')->on('rules')->onDelete('cascade');
         });
 
     }

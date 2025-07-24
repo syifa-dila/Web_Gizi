@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('pasiens', function (Blueprint $table) {
             $table->id(); 
-            $table->string('name', 25)->nullable(); 
+            $table->string('name', 100)->nullable(); 
             $table->string('gender', 10)->nullable(); 
             $table->date('birth_date')->nullable(); 
-            $table->string('motherName', 25)->nullable();
-            $table->string('fatherName', 25)->nullable();
-            $table->string('address', 100)->nullable(); 
+            $table->string('motherName', 100)->nullable();
+            $table->string('fatherName', 100)->nullable();
+            $table->string('address', 255)->nullable(); 
             $table->string('noKK', 17)->nullable(); 
             $table->string('phone_number', 13)->nullable(); 
             $table->string('medical_History', 50)->nullable();
