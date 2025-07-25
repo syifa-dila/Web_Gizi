@@ -29,7 +29,7 @@ class CombinationController extends Controller
 
         // Proses dan simpan kombinasi CF
         foreach ($result_cf as $rcf) {
-            $rules = Rules::where('gejala_id', $rcf->gejalas_id)->get();
+            $rules = Rules::where('gejalas_id', $rcf->gejalas_id)->get();
             if ($rules->isEmpty()) {
                 return back()->with('error', 'Gejala yang dipilih belum punya aturan diagnosa. Hubungi admin.');
             }
@@ -38,10 +38,10 @@ class CombinationController extends Controller
                 $cf_pakar = $rule->cf_pakar;
                 Combination::create([
                     'pasiens_id'    => $pasiens_id,
-                    'disease_id'    => $rule->disease_id,
+                    'diseases_id'    => $rule->diseases_id,
                     'result_cf_id'  => $rcf->id,
                     'rules_id'      => $rule->id,
-                    'cf_value'      => round($cf_user * $cf_pakar, 4),
+                    'cf_value'      => round($cf_user * $cf_pakar, 1),
                 ]);
             }
         }

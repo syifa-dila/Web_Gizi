@@ -32,6 +32,6 @@ public function pasien()
     }
     public function rules()
 {
-    return $this->hasMany(Rules::class, 'gejala_id', 'gejala_id');
+    return $this->hasMany(Rules::class, 'gejalas_id', 'gejalas_id');
 }
 }

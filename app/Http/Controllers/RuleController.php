@@ -25,14 +25,14 @@ class RuleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'disease_id' => 'required|exists:diseases,id',
-            'gejala_id' => 'required|exists:gejalas,id',
+            'diseases_id' => 'required|exists:diseases,id',
+            'gejalas_id' => 'required|exists:gejalas,id',
             'cf_pakar' => 'required|numeric|between:0,1',
         ]);
 
         Rules::create([
-            'disease_id' => $request->disease_id,
-            'gejala_id' => $request->gejala_id,
+            'diseases_id' => $request->diseases_id,
+            'gejalas_id' => $request->gejalas_id,
             'cf_pakar' => $request->cf_pakar,
         ]);
 
@@ -52,14 +52,14 @@ class RuleController extends Controller
         $rule = Rules::findOrFail($id);
 
         $request->validate([
-            'disease_id' => 'required|exists:diseases,id',
-            'gejala_id' => 'required|exists:gejalas,id',
+            'diseases_id' => 'required|exists:diseases,id',
+            'gejalas_id' => 'required|exists:gejalas,id',
             'cf_pakar' => 'required|numeric|between:0,1',
         ]);
 
         $rule->update([
-            'disease_id' => $request->disease_id,
-            'gejala_id' => $request->gejala_id,
+            'diseases_id' => $request->diseases_id,
+            'gejalas_id' => $request->gejalas_id,
             'cf_pakar' => $request->cf_pakar,
         ]);
 

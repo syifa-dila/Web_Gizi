@@ -11,10 +11,6 @@
                 <label class="block font-semibold mb-1">Deskripsi</label>
                 <textarea name="deskripsi" rows="5" class="w-full border rounded p-2" required></textarea>
             </div>
-            <div class="mb-4">
-                <label class="block font-semibold mb-1">Upload Gambar</label>
-                <input type="file" name="gambar" class="w-full">
-            </div>
             <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Simpan</button>
         </form>
     </div>

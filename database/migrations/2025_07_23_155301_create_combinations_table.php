@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('combinations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('pasiens_id')->nullable();
-            $table->unsignedBigInteger('diseases_id')->nullable();
-            $table->unsignedBigInteger('result_cf_id')->nullable();
-            $table->unsignedBigInteger('rules_id')->nullable();
-            $table->float('cf_value')->nullable(); // hasil CF akhir combine user & pakar
+            $table->unsignedBigInteger('pasiens_id');
+            $table->unsignedBigInteger('diseases_id');
+            $table->unsignedBigInteger('result_cf_id');
+            $table->unsignedBigInteger('rules_id');
+            $table->decimal('cf_value', 5,2); 
 
             $table->foreign('diseases_id')->references('id')->on('diseases')->onDelete('cascade');
             $table->foreign('result_cf_id')->references('id')->on('result_cf')->onDelete('cascade');

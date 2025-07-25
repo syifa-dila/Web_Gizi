@@ -15,8 +15,7 @@
                 $table->id();
                 $table->unsignedBigInteger('diseases_id');
                 $table->unsignedBigInteger('gejalas_id');
-                    // $table->decimal('CF_pakar', 5, 3);
-                $table->float('cf_pakar')->nullable(false);
+                $table->decimal('cf_pakar', 5,1);
                 $table->timestamps();
 
                 $table->foreign('diseases_id')->references('id')->on('diseases')->onDelete('cascade');

@@ -10,6 +10,7 @@ use App\Http\Controllers\RuleController;
 use App\Http\Controllers\AlgoritmaController;
 use App\Http\Controllers\ResultCfController;
 use App\Http\Controllers\CombinationController;
+use App\Http\Controllers\RiwayatDiagnosisController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,13 +50,22 @@ Route::middleware('auth')->group(function () {
 });
 
 //Diagnosis
-Route::middleware('auth')->group(function (){
+Route::middleware('auth')->group(function () {
     Route::get('/diagnosis/form', [DiagnosisController::class, 'form'])->name('diagnosis.form');
-    Route::post('/diagnosis/proses', [DiagnosisController::class, 'proses'])->name('diagnosis.proses');
-    Route::get('/diagnosis/hasil', [DiagnosisController::class, 'hasil'])->name('diagnosis.hasil');
-    Route::get('/diagnosis/index', [DiagnosisController::class, 'index'])->name('diagnosis.index');
+    Route::get('/diagnosis/proses/{pasiens_id}', [DiagnosisController::class, 'proses'])->name('diagnosis.proses');
+    Route::get('/diagnosis/hasil/{id}', [DiagnosisController::class, 'hasil'])->name('diagnosis.hasil');     // ← cetak diletakkan sebelum {id}
+    Route::get('/diagnosis', [DiagnosisController::class, 'index'])->name('diagnosis.index');
+    Route::delete('/diagnosis/{id}', [DiagnosisController::class, 'destroy'])->name('diagnosis.destroy');
+
+
 });
 
+
+//riwayatDiagnosis
+Route::middleware(['auth'])->group(function () {
+    Route::get('/riwayat-diagnosis', [RiwayatDiagnosisController::class, 'index'])->name('riwayat.index');
+    Route::get('/riwayat-diagnosis/{id}', [RiwayatDiagnosisController::class, 'show'])->name('riwayat.show');
+});
 //resultCF
 Route::middleware('auth')->group(function (){
 Route::post('/resultcf/store', [ResultCfController::class, 'store'])->name('resultcf.store');
@@ -80,17 +90,17 @@ Route::middleware('auth')->group(function(){
 });
 
 //pasien
+Route::get('/pasien/create', [PasienController::class, 'create'])->name('pasien.create');
 Route::middleware(['auth'])->group(function () {
-    Route::get('/pasien/create', [PasienController::class, 'create'])->name('pasien.create');
     Route::post('/pasien/store', [PasienController::class, 'store'])->name('pasien.store');
 });
 
 
 //InfoPenyakit
-Route::middleware('auth')->group(function () {
+
     Route::get('/Ipenyakit/create', function () {return view('Ipenyakit.create');})->name('Ipenyakit.create');
     Route::get('/Ipenyakit/index', function () {return view('Ipenyakit.index');})->name('Ipenyakit.index');
-});
+
 
 //user
 Route::middleware('auth')->group(function (){

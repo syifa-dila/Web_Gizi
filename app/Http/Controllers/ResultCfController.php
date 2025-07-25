@@ -46,4 +46,5 @@ class ResultCfController extends Controller
             'pasiens_id' => $pasiens_id
         ]);
     }
+    
 }

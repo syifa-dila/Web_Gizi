@@ -13,19 +13,19 @@ return new class extends Migration
     {
         Schema::create('pasiens', function (Blueprint $table) {
             $table->id(); 
-            $table->string('name', 100)->nullable(); 
-            $table->string('gender', 10)->nullable(); 
-            $table->date('birth_date')->nullable(); 
-            $table->string('motherName', 100)->nullable();
-            $table->string('fatherName', 100)->nullable();
-            $table->string('address', 255)->nullable(); 
-            $table->string('noKK', 17)->nullable(); 
-            $table->string('phone_number', 13)->nullable(); 
-            $table->string('medical_History', 50)->nullable();
-            $table->string('medical_Alergi', 50)->nullable(); 
-            $table->string('drug_allergy', 50)->nullable();
-            $table->string('body_weight', 10)->nullable();
-            $table->string('height', 10)->nullable(); 
+            $table->string('name', 100); 
+            $table->string('gender', 10); 
+            $table->date('birth_date'); 
+            $table->string('motherName', 100);
+            $table->string('fatherName', 100);
+            $table->string('address', 255); 
+            $table->string('noKK', 17); 
+            $table->string('phone_number', 13); 
+            $table->string('medical_History', 50);
+            $table->string('medical_Alergi', 50); 
+            $table->string('drug_allergy', 50);
+            $table->string('body_weight', 10);
+            $table->string('height', 10); 
             $table->unsignedBigInteger('user_id');
             $table->timestamps(); 
 

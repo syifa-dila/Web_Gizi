@@ -6,8 +6,8 @@
             @csrf
 
             <div>
-                <label for="disease_id" class="block font-semibold">Pilih Penyakit</label>
-                <select name="disease_id" id="disease_id" class="w-full border rounded px-3 py-2">
+                <label for="diseases_id" class="block font-semibold">Pilih Penyakit</label>
+                <select name="diseases_id" id="diseases_id" class="w-full border rounded px-3 py-2">
                     @foreach ($diseases as $disease)
                         <option value="{{ $disease->id }}">{{ $disease->disease_code }}</option>
                     @endforeach
@@ -15,8 +15,8 @@
             </div>
 
             <div>
-                <label for="gejala_id" class="block font-semibold">Pilih Gejala</label>
-                <select name="gejala_id" id="gejala_id" class="w-full border rounded px-3 py-2">
+                <label for="gejalas_id" class="block font-semibold">Pilih Gejala</label>
+                <select name="gejalas_id" id="gejalas_id" class="w-full border rounded px-3 py-2">
                     @foreach ($gejalas as $gejala)
                         <option value="{{ $gejala->id }}">{{ $gejala->code_symptom }}</option>
                     @endforeach
@@ -25,7 +25,7 @@
 
             <div>
                 <label for="cf_pakar">Nilai CF Pakar</label>
-                <input type="number" step="0.01" min="0" max="1" name="cf_pakar" id="cf_pakar" required>
+                <input type="number" step="0.1" min="0" max="1" name="cf_pakar" id="cf_pakar" required>
 
             </div>
             <div>

@@ -27,13 +27,13 @@
                                 {{ $comb->rules->disease->name_disease ?? '-' }}
                             </td>
                             <td class="border border-gray-300 px-4 py-2">
-                                {{ number_format($comb->result_cf->nilai_cf ?? 0, 2) }}
+                                {{ number_format($comb->result_cf->nilai_cf ?? 0, 1) }}
                             </td>
                             <td class="border border-gray-300 px-4 py-2">
-                                {{ number_format($comb->rules->cf_pakar ?? 0, 2) }}
+                                {{ number_format($comb->rules->cf_pakar ?? 0, 1) }}
                             </td>
                             <td class="border border-gray-300 px-4 py-2">
-                                {{ number_format($comb->cf_value ?? 0, 4) }}
+                                {{ number_format($comb->cf_value ?? 0, 1) }}
                             </td>
                         </tr>
                     @empty
@@ -46,12 +46,12 @@
                 </tbody>
             </table>
         </div>
+        <div class="mt-6 text-center">
+    <a href="{{ route('diagnosis.proses', ['pasiens_id' => $pasien->id]) }}"
+       class="inline-block bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition">
+        Proses Diagnosis
+    </a>
+</div>
 
-        <div class="mt-8 text-center">
-            <a href="{{ route('dashboard') }}"
-               class="inline-block bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">
-                Kembali ke Dashboard
-            </a>
-        </div>
     </div>
 </x-app-layout>

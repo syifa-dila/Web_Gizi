@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('gejalas_id');
             $table->unsignedBigInteger('pasiens_id');
-            $table->float('nilai_cf'); 
+            $table->decimal('nilai_cf', 5,1); 
 
             $table->foreign('pasiens_id')->references('id')->on('pasiens')->onDelete('cascade');
             $table->foreign('gejalas_id')->references('id')->on('gejalas')->onDelete('cascade');

@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('diseases', function (Blueprint $table) {
             $table->id();
-            $table->string('name_disease')->nullable();
-            $table->string('disease_code')->nullable();
-            $table->text('information')->nullable();
-            $table->text('suggestion')->nullable();
+            $table->string('name_disease');
+            $table->string('disease_code');
+            $table->text('information');
+            $table->text('suggestion');
             $table->timestamps();
         });
     }

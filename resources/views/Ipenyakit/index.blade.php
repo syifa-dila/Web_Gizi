@@ -8,7 +8,6 @@
 
             <div class="mb-12">
                 <h2 class="text-2xl font-semibold mb-2">1. Marasmus</h2>
-                <img src="{{ asset('images/marasmus.jpg') }}" alt="Marasmus" class="w-full max-w-md mb-4 rounded shadow">
                 <p class="text-justify text-gray-700">
                 <strong>Marasmus</strong> adalah salah satu bentuk kekurangan energi-protein paling berat yang disebabkan oleh kekurangan asupan kalori dan protein dalam waktu lama. Marasmus banyak dijumpai pada anak-anak balita di daerah miskin, terutama saat tidak cukup mendapat ASI atau makanan pendamping ASI yang bergizi. Tubuh anak menjadi sangat kurus, tampak tulang-tulang menonjol, dan kehilangan lapisan lemak tubuh.
                 <br><br>
@@ -20,7 +19,6 @@
 
             <div class="mb-12">
                 <h2 class="text-2xl font-semibold mb-2">2. Kwashiorkor</h2>
-                <img src="{{ asset('images/kwashiorkor.jpg') }}" alt="Kwashiorkor" class="w-full max-w-md mb-4 rounded shadow">
                 <p class="text-justify text-gray-700">
                 <strong>Kwashiorkor</strong> adalah bentuk kekurangan gizi akibat kekurangan protein, meskipun asupan kalori masih mencukupi. Biasanya menyerang anak-anak yang berhenti menyusu terlalu dini. Tubuh tidak dapat mempertahankan keseimbangan cairan, menyebabkan edema (pembengkakan).
                 <br><br>
@@ -33,7 +31,6 @@
 
             <div class="mb-12">
                 <h2 class="text-2xl font-semibold mb-2">3. Stunting</h2>
-                <img src="{{ asset('images/stunting.jpg') }}" alt="Stunting" class="w-full max-w-md mb-4 rounded shadow">
                 <p class="text-justify text-gray-700">
                 <strong>Stunting</strong> adalah kondisi pertumbuhan anak yang terhambat karena kekurangan gizi kronis sejak masa kandungan hingga usia 2 tahun. Stunting sering tidak disadari karena anak terlihat sehat, namun tinggi badannya jauh di bawah rata-rata.
                 <br><br>
@@ -45,7 +42,6 @@
 
             <div class="mb-12">
                 <h2 class="text-2xl font-semibold mb-2">4. Wasting</h2>
-                <img src="{{ asset('images/wasting.jpg') }}" alt="Wasting" class="w-full max-w-md mb-4 rounded shadow">
                 <p class="text-justify text-gray-700">
                 <strong>Wasting</strong> adalah bentuk malnutrisi akut yang ditandai dengan penurunan berat badan secara drastis. Penyebabnya bisa karena infeksi berat, diare berkepanjangan, atau kekurangan makanan dalam waktu singkat.
                 <br><br>
@@ -57,7 +53,6 @@
 
             <div class="mb-12">
                 <h2 class="text-2xl font-semibold mb-2">5. Kekurangan Energi Protein (KEP)</h2>
-                <img src="{{ asset('images/kep.jpg') }}" alt="KEP" class="w-full max-w-md mb-4 rounded shadow">
                 <p class="text-justify text-gray-700">
                 <strong>KEP</strong> adalah kondisi kekurangan asupan kalori dan protein secara bersamaan. KEP adalah istilah umum yang mencakup Marasmus dan Kwashiorkor. Biasanya terjadi karena kemiskinan, ketidaktahuan gizi, atau bencana alam.
                 <br><br>
@@ -69,7 +64,6 @@
 
             <div class="mb-12">
                 <h2 class="text-2xl font-semibold mb-2">6. Anemia Gizi Besi</h2>
-                <img src="{{ asset('images/anemia.jpg') }}" alt="Anemia" class="w-full max-w-md mb-4 rounded shadow">
                 <p class="text-justify text-gray-700">
                 <strong>Anemia Gizi Besi</strong> adalah jenis anemia yang paling umum, disebabkan oleh kekurangan zat besi. Besi penting untuk membentuk hemoglobin dalam darah. Kondisi ini sering dialami anak-anak karena pertumbuhan pesat, infeksi cacing, atau pola makan rendah zat besi.
                 <br><br>
@@ -81,7 +75,6 @@
 
             <div class="mb-12">
                 <h2 class="text-2xl font-semibold mb-2">7. Hipovitaminosis</h2>
-                <img src="{{ asset('images/hipovitaminosis.jpg') }}" alt="Hipovitaminosis" class="w-full max-w-md mb-4 rounded shadow">
                 <p class="text-justify text-gray-700">
                 <strong>Hipovitaminosis</strong> adalah kondisi kekurangan satu atau lebih vitamin penting yang dibutuhkan tubuh, seperti vitamin A, D, B1, dan B12.
                 <br><br>
@@ -98,7 +91,6 @@
 
             <div class="mb-12">
                 <h2 class="text-2xl font-semibold mb-2">8. GAKY (Gangguan Akibat Kekurangan Yodium)</h2>
-                <img src="{{ asset('images/gaky.jpg') }}" alt="GAKY" class="w-full max-w-md mb-4 rounded shadow">
                 <p class="text-justify text-gray-700">
                 <strong>GAKY</strong> merupakan gangguan akibat kekurangan yodium, yaitu zat penting untuk produksi hormon tiroid. Banyak ditemukan di daerah pegunungan yang minim garam beryodium.
                 <br><br>
@@ -110,7 +102,6 @@
 
             <div class="mb-12">
                 <h2 class="text-2xl font-semibold mb-2">9. Kekurangan Zinc</h2>
-                <img src="{{ asset('images/zinc.jpg') }}" alt="Zinc" class="w-full max-w-md mb-4 rounded shadow">
                 <p class="text-justify text-gray-700">
                 <strong>Kekurangan Zinc</strong> dapat mengganggu pertumbuhan anak, penyembuhan luka, serta respon imun. Zinc banyak ditemukan dalam daging merah, telur, dan susu.
                 <br><br>
@@ -122,7 +113,6 @@
 
             <div class="mb-12">
                 <h2 class="text-2xl font-semibold mb-2">10. Obesitas Anak</h2>
-                <img src="{{ asset('images/obesitas.jpg') }}" alt="Obesitas" class="w-full max-w-md mb-4 rounded shadow">
                 <p class="text-justify text-gray-700">
                 <strong>Obesitas Anak</strong> terjadi ketika anak memiliki kelebihan berat badan dan lemak tubuh karena pola makan tinggi kalori dan rendah aktivitas fisik. Ini bukan hanya masalah penampilan, tapi juga kesehatan serius.
                 <br><br>
@@ -134,7 +124,6 @@
 
             <div class="mb-12">
                 <h2 class="text-2xl font-semibold mb-2">11. Hipervitaminosis</h2>
-                <img src="{{ asset('images/hipervitaminosis.jpg') }}" alt="Hipervitaminosis" class="w-full max-w-md mb-4 rounded shadow">
                 <p class="text-justify text-gray-700">
                 <strong>Hipervitaminosis</strong> adalah kelebihan konsumsi vitamin, terutama vitamin yang larut dalam lemak (A, D, E, K). Biasanya disebabkan oleh penggunaan suplemen berlebihan tanpa pengawasan dokter.
                 <br><br>

@@ -2,49 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Combination;
+use App\Models\Diagnosis;
 use App\Models\Rules;
 use App\Models\Gejala;
-use App\Models\Disease;
-use App\Models\Diagnosis;
 use App\Models\Pasien;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+
 
 class DiagnosisController extends Controller
 {
-    public function index()
-    {
-        $diagnosis = Diagnosis::with(['pasien', 'disease'])->latest()->get();
+public function index(Request $request)
+{
+    $query = Diagnosis::with(['pasien', 'disease']);
 
-        return view('diagnosis.index', compact('diagnosis'));
+    if ($request->filled('date')) {
+        $query->whereDate('created_at', $request->date);
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'date' => 'required|date',
-            'result_diagnosis' => 'required|string',
-            'pasiens_id' => 'required|exists:pasiens,id',
-            'gejalas_id' => 'required|exists:gejalas,id',
-            'diseases_id' => 'required|exists:diseases,id',
-            'rules_id' => 'required|exists:rules,id',
-        ]);
+    $diagnoses = $query->latest()->get();
 
-        $diagnosis = Diagnosis::create([
-            'user_id' => Auth::id(),
-            'code_diagnosis' => 'DX-' . time(),
-            'date' => $request->date,
-            'result_diagnosis' => $request->result_diagnosis,
-            'pasiens_id' => auth()->user()->pasiens_id,
-            'gejalas_id' => $request->gejalas_id,
-            'diseases_id' => $request->diseases_id,
-            'rules_id' => $request->rules_id,
-        ]);
+    return view('diagnosis.index', compact('diagnoses'));
+}
 
-        return redirect()->route('diagnosis.index')->with('success', 'Diagnosis berhasil disimpan.');
-    }
 
-     public function form()
+    public function form()
     {
         $gejalas = Gejala::all();
 
@@ -63,18 +47,103 @@ class DiagnosisController extends Controller
         return view('diagnosis.form', compact('gejalas', 'pilihan', 'pasiens'));
     }
 
-    public function hasil(Request $request)
-    {
-        $diagnosis = Diagnosis::with(['disease', 'user.pasien'])->find(session('last_diagnosis_id'));
+    public function proses($pasiens_id)
+{
+    $combinations = Combination::with('rules.disease')
+        ->where('pasiens_id', $pasiens_id)
+        ->get();
 
-        if ($diagnosis) {
-            return view('diagnosis.hasil', [
-                'diagnosa' => $diagnosis,
-                'penyakit' => $diagnosis->disease,
-                'nilai_cf' => $diagnosis->nilai_cf,
-            ]);
+    if ($combinations->isEmpty()) {
+        return back()->with('error', 'Belum ada data kombinasi CF untuk pasien ini.');
+    }
+
+    // Kelompokkan berdasarkan penyakit
+    $grouped = $combinations->groupBy(function ($item) {
+        return $item->rules->diseases_id;
+    });
+
+    $results = [];
+
+    foreach ($grouped as $disease_id => $items) {
+        $cf_values = $items->pluck('cf_value')->toArray();
+
+        $cf_combine = $cf_values[0];
+        for ($i = 1; $i < count($cf_values); $i++) {
+            $cf_combine = $cf_combine + ($cf_values[$i] * (1 - $cf_combine));
+            $cf_combine = round($cf_combine, 6);
         }
 
-        return view('diagnosis.hasil')->with('error', 'Tidak ada hasil diagnosa yang ditemukan.');
+        $results[] = [
+            'diseases_id' => $disease_id,
+            'cf_combine' => $cf_combine,
+        ];
     }
+
+    // Ambil penyakit dengan nilai CF terbesar
+    $best = collect($results)->sortByDesc('cf_combine')->first();
+
+    // Simpan ke diagnosis
+    $diagnosis = Diagnosis::create([
+        'date' => now(),
+        'result' => round($best['cf_combine'] * 100, 2),
+        'user_id' => Auth::id(),
+        'pasiens_id' => $pasiens_id,
+        'diseases_id' => $best['diseases_id'],
+    ]);
+
+    return redirect()->route('diagnosis.hasil', $diagnosis->id);
+}
+
+public function hasil($id)
+{
+    $diagnosis = Diagnosis::with('pasien', 'disease')->findOrFail($id);
+    $pasien = $diagnosis->pasien;
+
+    // Ambil kombinasi berdasarkan pasien (karena dihubungkan lewat pasiens_id)
+    $combinations = Combination::with('rules.disease')
+        ->where('pasiens_id', $diagnosis->pasiens_id)
+        ->get();
+
+    // Hitung CF combine per penyakit
+    $grouped = $combinations->groupBy(function ($item) {
+        return $item->rules->diseases_id;
+    });
+
+    $results = [];
+
+    foreach ($grouped as $disease_id => $items) {
+        $cf_values = $items->pluck('cf_value')->toArray();
+
+        $cf_combine = $cf_values[0];
+        for ($i = 1; $i < count($cf_values); $i++) {
+            $cf_combine = $cf_combine + ($cf_values[$i] * (1 - $cf_combine));
+        }
+
+        $results[] = [
+            'disease' => $items->first()->rules->disease,
+            'cf_combine' => round($cf_combine * 100, 2),
+        ];
+    }
+
+    // Urutkan dari yang tertinggi
+    $sortedResults = collect($results)->sortByDesc('cf_combine')->values();
+
+    return view('diagnosis.hasil', [
+        'diagnosis' => $diagnosis,
+        'pasien' => $pasien,
+        'disease' => $diagnosis->disease,
+        'allResults' => $sortedResults,
+    ]);
+    return view('diagnosis.hasil', ['diagnosis' => $diagnosis,'pasien' => $pasien,'disease' => $diagnosis->disease,'allResults' => $sortedResults,]);
+
+}
+
+public function destroy($id)
+{
+    $diagnosis = Diagnosis::findOrFail($id);
+    $diagnosis->delete();
+
+    return redirect()->route('diagnosis.index')->with('success', 'Diagnosis berhasil dihapus.');
+
+}
 }
