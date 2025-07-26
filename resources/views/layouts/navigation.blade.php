@@ -10,6 +10,8 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Beranda') }}
                     </x-nav-link>
+@auth
+@if(Auth::user()->role_id == 2)
                     <x-nav-link :href="route('pasien.create')" :active="request()->routeIs('pasien.create')">
                         {{ __('Diagnosis') }}
                     </x-nav-link>
@@ -19,18 +21,24 @@
                     <x-nav-link :href="route('jam.operasional')" :active="request()->routeIs('jam.operasional')">
                         {{ __('Jam Operasional') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('gejala.index')" :active="request()->routeIs('gejala.index')">
-                        {{ __('Kelola Gejala') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('penyakit.index')" :active="request()->routeIs('penyakit.index')">
-                        {{ __('Kelola Penyakit') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
-                        {{ __('Meihat daftar pengguna') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('rules.index')" :active="request()->routeIs('rules.index')">
-                        {{ __('Kelola nilai CF') }}
-                    </x-nav-link>
+    @endif
+@endauth
+@auth
+@if(Auth::user()->role_id === 1)
+        <x-nav-link :href="route('gejala.index')" :active="request()->routeIs('gejala.index')">
+            {{ __('Kelola Gejala') }}
+        </x-nav-link>
+        <x-nav-link :href="route('penyakit.index')" :active="request()->routeIs('penyakit.index')">
+            {{ __('Kelola Penyakit') }}
+        </x-nav-link>
+        <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
+            {{ __('Melihat daftar pengguna') }}
+        </x-nav-link>
+        <x-nav-link :href="route('rules.index')" :active="request()->routeIs('rules.index')">
+            {{ __('Kelola nilai CF') }}
+        </x-nav-link>
+    @endif
+@endauth
                 </div>
             </div>
             @auth
@@ -86,6 +94,8 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Beranda') }}
             </x-responsive-nav-link>
+@auth
+@if(Auth::user()->role_id == 2)
             <x-responsive-nav-link :href="route('pasien.create')" :active="request()->routeIs('pasien.create')">
                 {{ __('Diagnosis') }}
             </x-responsive-nav-link>
@@ -95,19 +105,27 @@
             <x-responsive-nav-link :href="route('jam.operasional')" :active="request()->routeIs('jam.operasional')">
                 {{ __('Jam Operasional') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('gejala.index')" :active="request()->routeIs('gejala.index')">
-                {{ __('Kelola Gejala') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('penyakit.index')" :active="request()->routeIs('penyakit.index')">
-                {{ __('Kelola Penyakit') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
-                {{ __('Melihat daftar pengguna') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('rules.index')" :active="request()->routeIs('rules.index')">
-                {{ __('Kelola nilai CF') }}
-            </x-responsive-nav-link>
+    @endif
+@endauth
+@auth
+@if(Auth::user()->hasRole('admin'))
+    <x-nav-link :href="route('gejala.index')" :active="request()->routeIs('gejala.index')">
+        {{ __('Kelola Gejala') }}
+    </x-nav-link>
+    <x-nav-link :href="route('penyakit.index')" :active="request()->routeIs('penyakit.index')">
+        {{ __('Kelola Penyakit') }}
+    </x-nav-link>
+    <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
+        {{ __('Melihat daftar pengguna') }}
+    </x-nav-link>
+    <x-nav-link :href="route('rules.index')" :active="request()->routeIs('rules.index')">
+        {{ __('Kelola nilai CF') }}
+    </x-nav-link>
+@endif
+@endauth
+
         </div>
+
         @auth
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">

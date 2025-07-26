@@ -60,8 +60,9 @@ public function pasien()
 }
 public function hasRole($role)
 {
-    return $this->role === $role; 
+    return $this->role && $this->role->name === $role;
 }
+
 public function role()
 {
     return $this->belongsTo(Role::class, 'role_id');

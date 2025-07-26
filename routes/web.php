@@ -39,33 +39,34 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-//route Gejala
-Route::middleware('auth')->group(function () {
+//route gejala role admin
+Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/gejala/index', [GejalaController::class, 'index'])->name('gejala.index');
-    // Route::get('/gejala/create', [GejalaController::class, 'create'])->name('gejala.create');
     Route::post('/gejala/store', [GejalaController::class, 'store'])->name('gejala.store');
     Route::get('/gejala/{id}/edit', [GejalaController::class, 'edit'])->name('gejala.edit');
     Route::put('/gejala/{id}', [GejalaController::class, 'update'])->name('gejala.update');
     Route::delete('/gejala/{id}', [GejalaController::class, 'destroy'])->name('gejala.destroy');
 });
 
+//route diagnosis role admin
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/diagnosis', [DiagnosisController::class, 'index'])->name('diagnosis.index');
+    Route::delete('/diagnosis/{id}', [DiagnosisController::class, 'destroy'])->name('diagnosis.destroy');
+});
+
 //Diagnosis
 Route::middleware('auth')->group(function () {
     Route::get('/diagnosis/form', [DiagnosisController::class, 'form'])->name('diagnosis.form');
     Route::get('/diagnosis/proses/{pasiens_id}', [DiagnosisController::class, 'proses'])->name('diagnosis.proses');
-    Route::get('/diagnosis/hasil/{id}', [DiagnosisController::class, 'hasil'])->name('diagnosis.hasil');     // ← cetak diletakkan sebelum {id}
-    Route::get('/diagnosis', [DiagnosisController::class, 'index'])->name('diagnosis.index');
-    Route::delete('/diagnosis/{id}', [DiagnosisController::class, 'destroy'])->name('diagnosis.destroy');
-
-
+    Route::get('/diagnosis/hasil/{id}', [DiagnosisController::class, 'hasil'])->name('diagnosis.hasil');   
 });
 
 
 //riwayatDiagnosis
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/riwayat-diagnosis', [RiwayatDiagnosisController::class, 'index'])->name('riwayat.index');
-    Route::get('/riwayat-diagnosis/{id}', [RiwayatDiagnosisController::class, 'show'])->name('riwayat.show');
 });
+
 //resultCF
 Route::middleware('auth')->group(function (){
 Route::post('/resultcf/store', [ResultCfController::class, 'store'])->name('resultcf.store');
@@ -80,8 +81,8 @@ Route::get('/combination/show/{pasiens_id}', [CombinationController::class, 'sho
 
 });
 
-//penyakit
-Route::middleware('auth')->group(function(){
+// Penyakit
+Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/penyakit/index', [DiseaseController::class, 'index'])->name('penyakit.index');
     Route::post('/penyakit/store', [DiseaseController::class, 'store'])->name('penyakit.store');
     Route::get('/penyakit/{id}/edit', [DiseaseController::class, 'edit'])->name('penyakit.edit');
@@ -102,27 +103,20 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/Ipenyakit/index', function () {return view('Ipenyakit.index');})->name('Ipenyakit.index');
 
 
-//user
-Route::middleware('auth')->group(function (){
+// Daftar Pengguna
+Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/user/index', [UserController::class, 'index'])->name('user.index');
-});
+});;
 
-//kelola nilai CF
-Route::middleware('auth')->group(function (){
+// Kelola Nilai CF
+Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/rules/index', [RuleController::class, 'index'])->name('rules.index');
     Route::get('/rules/create', [RuleController::class, 'create'])->name('rules.create');
     Route::post('/rules/store', [RuleController::class, 'store'])->name('rules.store');
     Route::get('/rules/{id}/edit', [RuleController::class, 'edit'])->name('rules.edit');
     Route::put('/rules/{id}', [RuleController::class, 'update'])->name('rules.update');
     Route::delete('/rules/{id}', [RuleController::class, 'destroy'])->name('rules.destroy');
-
-
 });
-
-// Route::middleware('auth')->group(function () {
-// Route::get('/Ipenyakit/create', function () { return view('Ipenyakit.create');});
-// Route::get('/Ipenyakit/index', function () { return view('Ipenyakit.index');});
-// });
 
 //jamOprasional
 Route::get('/jam-operasional', function () {

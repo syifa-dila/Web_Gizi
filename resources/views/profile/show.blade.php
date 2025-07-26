@@ -1,19 +1,27 @@
 <x-app-layout>
-    <div class="max-w-3xl mx-auto py-10">
-        <h1 class="text-2xl font-bold mb-6 text-center">Profil Pengguna</h1>
+    <div class="max-w-3xl mx-auto py-10 px-4">
 
-        <div class="bg-white rounded shadow p-6 mb-6">
-            <p><strong>Username:</strong> {{ Auth::user()->name }}</p>
-            <p><strong>Email:</strong> {{ Auth::user()->email }}</p>
+        <h1 class="text-3xl font-bold mb-8 text-center text-green-700">Profil Admin</h1>
+
+        <div class="bg-green-50 border border-green-200 rounded-xl shadow p-6 text-center">
+            <p class="text-lg text-gray-800 mb-2">
+                <strong>Username:</strong> {{ Auth::user()->name }}
+            </p>
+            <p class="text-lg text-gray-800">
+                <strong>Email:</strong> {{ Auth::user()->email }}
+            </p>
         </div>
 
-        <!-- <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <a href="{{ route('profile.edit') }}" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 text-center">Edit Profil</a>
-            <form method="POST" action="{{ route('profile.destroy') }}" onsubmit="return confirm('Yakin ingin menghapus akun?')">
-                @csrf
-                @method('DELETE')
-                <button class="bg-red-500 text-white px-4 py-2 rounded w-full hover:bg-red-600">Hapus Akun</button>
-            </form>
-        </div> -->
+        <div class="mt-8 flex justify-center gap-6">
+            <a href="{{ route('riwayat.index') }}"
+               class="bg-green-600 hover:bg-green-700 text-white font-semibold px-5 py-2 rounded-lg shadow transition duration-200">
+                🩺 Riwayat Diagnosis Pasien
+            </a>
+            <a href="{{ route('user.index') }}"
+               class="bg-white border border-green-600 text-green-700 font-semibold px-5 py-2 rounded-lg hover:bg-green-100 shadow transition duration-200">
+                👥 Daftar Pengguna
+            </a>
+        </div>
+
     </div>
 </x-app-layout>
