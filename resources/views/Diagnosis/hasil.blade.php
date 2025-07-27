@@ -4,7 +4,7 @@
         <p class="text-center text-gray-600 mb-6">Berikut merupakan hasil diagnosis</p>
 
         <div class="border p-6 rounded-lg">
-            <h3 class="text-xl font-semibold mb-4 text-center text-indigo-700">Hasil Diagnosis Kekurangan Gizi</h3>
+            <h3 class="text-xl font-semibold mb-4 text-center text-indigo-700">Hasil Diagnosis Kekurangan Gizi Pada Anak Balita</h3>
 
             {{-- Informasi Pasien --}}
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">

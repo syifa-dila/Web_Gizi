@@ -1,4 +1,4 @@
-<x-app-layout>
+<!-- <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
             {{ __('Hasil Keyakinan CF - Pasien ID: ') . $pasiens_id }}
@@ -51,4 +51,4 @@
 
         </div>
     </div>
-</x-app-layout>
+</x-app-layout> -->

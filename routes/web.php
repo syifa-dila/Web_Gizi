@@ -28,8 +28,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
+Route::get('/dashboard', function () {return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -38,7 +37,11 @@ Route::middleware('auth')->group(function () {
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+//pasien & admin
+Route::middleware('auth')->group(function () {
+    Route::get('/diagnosis/hasil/{id}', [DiagnosisController::class, 'hasil'])->name('diagnosis.hasil');   
 
+});
 //route gejala role admin
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/gejala/index', [GejalaController::class, 'index'])->name('gejala.index');
@@ -55,15 +58,14 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 });
 
 //Diagnosis
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'role:pasien'])->group(function () {
     Route::get('/diagnosis/form', [DiagnosisController::class, 'form'])->name('diagnosis.form');
     Route::get('/diagnosis/proses/{pasiens_id}', [DiagnosisController::class, 'proses'])->name('diagnosis.proses');
-    Route::get('/diagnosis/hasil/{id}', [DiagnosisController::class, 'hasil'])->name('diagnosis.hasil');   
 });
 
 
 //riwayatDiagnosis
-Route::middleware(['auth', 'role:admin'])->group(function () {
+Route::middleware(['auth', 'role:pasien'])->group(function () {
     Route::get('/riwayat-diagnosis', [RiwayatDiagnosisController::class, 'index'])->name('riwayat.index');
 });
 
@@ -71,13 +73,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::middleware('auth')->group(function (){
 Route::post('/resultcf/store', [ResultCfController::class, 'store'])->name('resultcf.store');
 Route::post('/diagnosis/store', [ResultCfController::class, 'store'])->name('diagnosis.store');
-Route::get('/resultcf/{pasiens_id}', [ResultCfController::class, 'show'])->name('resultcf.show');
+// Route::get('/resultcf/{pasiens_id}', [ResultCfController::class, 'show'])->name('resultcf.show');
 });
 
 //combine
-Route::middleware('auth')->group(function (){
+Route::middleware(['auth', 'role:pasien'])->group(function () {
 Route::get('/combination/process/{pasiens_id}', [CombinationController::class, 'process'])->name('combination.process');
-Route::get('/combination/show/{pasiens_id}', [CombinationController::class, 'show'])->name('combinations.show');
+// Route::get('/combination/show/{pasiens_id}', [CombinationController::class, 'show'])->name('combinations.show');
 
 });
 

@@ -30,7 +30,6 @@ class ResultCfController extends Controller
         // Langsung lanjut ke proses combine
         // return redirect()->route('combination.process', ['pasiens_id' => $pasiensId]);
 
-        return redirect()->route('resultcf.show', ['pasiens_id' => $pasiensId]) ->with('success', 'Data keyakinan berhasil disimpan.');
     }
 
     public function show($pasiens_id)
@@ -45,6 +44,9 @@ class ResultCfController extends Controller
             'hasil_cf' => $data,
             'pasiens_id' => $pasiens_id
         ]);
+        
+        return redirect()->route('combination.process', ['pasiens_id' => $pasiensId]);
+
     }
     
 }
