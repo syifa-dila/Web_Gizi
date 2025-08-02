@@ -1,4 +1,4 @@
-<!-- <x-app-layout>
+<x-app-layout>
     <div class="max-w-5xl mx-auto py-10 px-6">
         <h2 class="text-2xl font-bold mb-6">
             Hasil Diagnosis untuk <span class="text-blue-600">{{ $pasien->name }}</span>
@@ -54,4 +54,4 @@
 </div>
 
     </div>
-</x-app-layout> -->
+</x-app-layout>

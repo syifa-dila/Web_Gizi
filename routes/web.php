@@ -73,13 +73,13 @@ Route::middleware(['auth', 'role:pasien'])->group(function () {
 Route::middleware('auth')->group(function (){
 Route::post('/resultcf/store', [ResultCfController::class, 'store'])->name('resultcf.store');
 Route::post('/diagnosis/store', [ResultCfController::class, 'store'])->name('diagnosis.store');
-// Route::get('/resultcf/{pasiens_id}', [ResultCfController::class, 'show'])->name('resultcf.show');
+Route::get('/resultcf/{pasiens_id}', [ResultCfController::class, 'show'])->name('resultcf.show');
 });
 
 //combine
 Route::middleware(['auth', 'role:pasien'])->group(function () {
 Route::get('/combination/process/{pasiens_id}', [CombinationController::class, 'process'])->name('combination.process');
-// Route::get('/combination/show/{pasiens_id}', [CombinationController::class, 'show'])->name('combinations.show');
+Route::get('/combination/show/{pasiens_id}', [CombinationController::class, 'show'])->name('combinations.show');
 
 });
 

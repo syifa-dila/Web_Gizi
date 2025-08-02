@@ -14,9 +14,9 @@ class AdminSeeder extends Seeder
     {
         // Buat user admin
         $user = User::create([
-            'name' => 'Syifa Dilla',
-            'email' => 'admin@gizi.com',
-            'password' => Hash::make('password123'),
+            'name' => 'Dokter Meri',
+            'email' => 'admingizi@gmail.com',
+            'password' => Hash::make('password'),
             'birth_date' => '1998-07-23',
             'gender' => 'Perempuan',
             'phone_number' => '081234567890',

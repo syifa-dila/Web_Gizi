@@ -1,29 +1,38 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile Edit') }}
+        <h2 class="font-semibold text-2xl text-green-700 leading-tight">
+            {{ __('Edit Profil Pengguna') }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
+    <div class="py-10">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            
+            {{-- Form Update Informasi Profil --}}
+            <div class="bg-white border border-gray-200 shadow rounded-xl p-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Ubah Informasi Profil</h3>
+                <div class="max-w-2xl">
                     @include('profile.partials.update-profile-information-form')
                 </div>
             </div>
 
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
+            {{-- Form Update Password --}}
+            <div class="bg-white border border-gray-200 shadow rounded-xl p-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Ubah Password</h3>
+                <div class="max-w-2xl">
                     @include('profile.partials.update-password-form')
                 </div>
             </div>
 
-            <!-- <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
+            {{-- Form Hapus Akun (opsional - dikomentari) --}}
+            {{-- 
+            <div class="bg-white border border-red-200 shadow rounded-xl p-6">
+                <h3 class="text-lg font-semibold text-red-700 mb-4">Hapus Akun</h3>
+                <div class="max-w-2xl">
                     @include('profile.partials.delete-user-form')
                 </div>
-            </div> -->
+            </div> 
+            --}}
         </div>
     </div>
 </x-app-layout>

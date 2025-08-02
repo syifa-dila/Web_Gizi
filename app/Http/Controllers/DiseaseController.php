@@ -23,34 +23,45 @@ class DiseaseController extends Controller
     /**
      * Proses update penyakit.
      */
-    public function update(Request $request, $id)
-    {
-        $disease = Disease::findOrFail($id);
+public function update(Request $request, $id)
+{
+    $disease = Disease::findOrFail($id);
 
-        $request->validate([
-            'disease_code' => 'required|max:10|unique:diseases,disease_code,' . $disease->id,
-            'name_disease' => 'required|string|max:100',
-            'information' => 'required|string',
-            'suggestion' => 'required|string',
-        ]);
+    $request->validate([
+        'disease_code' => 'required|max:10|unique:diseases,disease_code,' . $disease->id,
+        'name_disease' => 'required|string|max:100',
+        'information' => 'required|string',
+        'suggestion' => 'required|string',
+    ]);
 
-        $disease->update($request->all());
+    $disease->update($request->all());
 
-        return redirect()->route('penyakit.index')->with('success', 'Penyakit berhasil diperbarui.');
-    }
+    $notification = [
+        'message' => 'Penyakit berhasil diperbarui',
+        'alert-type' => 'success'
+    ];
+
+    return redirect()->route('penyakit.index')->with($notification);
+}
 
     /**
      * Hapus penyakit.
      */
-    public function destroy($id)
-    {
-        $disease = Disease::findOrFail($id);
-        $disease->delete();
+public function destroy($id)
+{
+    $disease = Disease::findOrFail($id);
+    $disease->delete();
 
-        return redirect()->route('penyakit.index')->with('success', 'Penyakit berhasil dihapus.');
-    }
+    $notification = [
+        'message' => 'Penyakit berhasil dihapus',
+        'alert-type' => 'success'
+    ];
 
-    public function store(Request $request)
+    return redirect()->route('penyakit.index')->with($notification);
+}
+
+
+public function store(Request $request)
 {
     $request->validate([
         'disease_code' => 'required|unique:diseases,disease_code|max:10',
@@ -66,8 +77,14 @@ class DiseaseController extends Controller
         'suggestion'   => $request->suggestion,
     ]);
 
-    return redirect()->back()->with('success', 'Data penyakit berhasil ditambahkan.');
+    $notification = [
+        'message' => 'Data penyakit berhasil ditambahkan',
+        'alert-type' => 'success'
+    ];
+
+    return redirect()->back()->with($notification);
 }
+
 
 public function gejalas()
 {

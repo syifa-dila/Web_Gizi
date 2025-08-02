@@ -143,7 +143,12 @@ public function destroy($id)
     $diagnosis = Diagnosis::findOrFail($id);
     $diagnosis->delete();
 
-    return redirect()->route('diagnosis.index')->with('success', 'Diagnosis berhasil dihapus.');
+    $notification = [
+        'message' => 'Riwayat Diagnosis Pasien berhasil dihapus',
+        'alert-type' => 'success'
+    ];
 
+    return redirect()->route('diagnosis.index')->with($notification);
 }
+
 }

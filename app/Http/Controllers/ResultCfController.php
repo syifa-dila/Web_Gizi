@@ -9,6 +9,7 @@ class ResultCfController extends Controller
 {
     public function store(Request $request)
     {
+        // dd($request->all()); 
         $request->validate([
             'pasiens_id' => 'required|exists:pasiens,id',
             'gejala' => 'required|array',
@@ -29,6 +30,8 @@ class ResultCfController extends Controller
 
         // Langsung lanjut ke proses combine
         // return redirect()->route('combination.process', ['pasiens_id' => $pasiensId]);
+        return redirect()->route('resultcf.show', ['pasiens_id' => $pasiensId])
+        ->with('success', 'Data berhasil disimpan. Lihat hasil CF sebelum melanjutkan.');
 
     }
 

@@ -44,17 +44,39 @@
                                        class="inline-block bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded mr-1 transition">
                                         Lihat
                                     </a>
-                                    <form action="{{ route('diagnosis.destroy', $diagnosis->id) }}"
-                                          method="POST"
-                                          class="inline-block"
-                                          onsubmit="return confirm('Yakin ingin menghapus diagnosis ini?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                                class="bg-red-600 hover:bg-red-500 text-white text-xs font-semibold px-3 py-1 rounded transition">
-                                            Hapus
-                                        </button>
-                                    </form>
+<!-- Tombol trigger modal -->
+<button
+    x-data
+    x-on:click="$dispatch('open-modal', 'confirm-diagnosis-deletion-{{ $diagnosis->id }}')"
+    class="bg-red-600 hover:bg-red-500 text-white text-xs font-semibold px-3 py-1 rounded transition">
+    Hapus
+</button>
+
+<!-- Modal konfirmasi hapus diagnosis -->
+<x-modal name="confirm-diagnosis-deletion-{{ $diagnosis->id }}" focusable>
+    <form method="POST" action="{{ route('diagnosis.destroy', $diagnosis->id) }}" class="p-6">
+        @csrf
+        @method('DELETE')
+
+        <h2 class="text-lg font-semibold text-gray-800">
+            Apakah Anda yakin ingin menghapus diagnosis ini?
+        </h2>
+
+        <p class="mt-2 text-sm text-gray-600">
+            Data diagnosis akan dihapus secara permanen dari sistem.
+        </p>
+
+        <div class="mt-6 flex justify-end gap-3">
+            <x-secondary-button x-on:click="$dispatch('close')">
+                Batal
+            </x-secondary-button>
+            <x-danger-button type="submit">
+                Hapus
+            </x-danger-button>
+        </div>
+    </form>
+</x-modal>
+
                                 </td>
                             </tr>
                         @endforeach

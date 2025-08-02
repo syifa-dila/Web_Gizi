@@ -22,18 +22,24 @@ class GejalaController extends Controller
     return view('gejala.edit', compact('gejalas'));
     }
 
-    public function update(Request $request, $id)
-    {
+public function update(Request $request, $id)
+{
     $validated = $request->validate([
         'code_symptom' => 'required|string|max:20|unique:gejalas,code_symptom,' . $id,
         'name_symptom' => 'required|string|max:255',
     ]);
 
-    $gejalas = Gejala::findOrFail($id);
-    $gejalas->update($validated);
+    $gejala = Gejala::findOrFail($id);
+    $gejala->update($validated);
 
-    return redirect()->route('gejala.index')->with('success', 'Gejala berhasil diperbarui.');
-    }
+    $notification = [
+        'message' => 'Gejala berhasil diperbarui',
+        'alert-type' => 'success'
+    ];
+
+    return redirect()->route('gejala.index')->with($notification);
+}
+
 
     public function destroy($id)
     {
@@ -41,15 +47,15 @@ class GejalaController extends Controller
     $gejalas->delete();
 
     $notification = [
-            'message' => 'Rule berhasil ditambahkan',
+            'message' => 'Gejala berhasil ditambahkan',
             'alert-type' => 'success'
         ];
 
     return redirect()->route('gejala.index')->with($notification);
     }
 
-     public function store(Request $request)
-    {
+public function store(Request $request)
+{
     $validated = $request->validate([
         'code_symptom' => 'required|string|max:20|unique:gejalas,code_symptom',
         'name_symptom' => 'required|string|max:255',
@@ -57,14 +63,12 @@ class GejalaController extends Controller
 
     Gejala::create($validated);
 
-    return redirect()->route('gejala.index')->with('success', 'Gejala berhasil ditambahkan.');
-    }
+    $notification = [
+        'message' => 'Gejala berhasil ditambahkan',
+        'alert-type' => 'success'
+    ];
 
-// public function penyakits()
-// {
-//     return $this->belongsToMany(Disease::class, 'aturan_nilai_cf', 'idGejala', 'idPenyakit')
-//                 ->withPivot('cfPakar');
-// }
-
+    return redirect()->route('gejala.index')->with($notification);
+}
 
 }

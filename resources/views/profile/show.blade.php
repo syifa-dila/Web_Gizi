@@ -9,16 +9,6 @@
             <p class="text-lg text-gray-800 mb-2">
                 <strong>Email:</strong> {{ Auth::user()->email }}
             </p>
-            <p class="text-lg text-gray-800">
-                <strong>Role:</strong>
-                @if(Auth::user()->role_id == 1)
-                    Admin
-                @elseif(Auth::user()->role_id == 2)
-                    Pasien
-                @else
-                    Tidak Dikenal
-                @endif
-            </p>
         </div>
 
         {{-- Tombol Aksi Berdasarkan Role --}}

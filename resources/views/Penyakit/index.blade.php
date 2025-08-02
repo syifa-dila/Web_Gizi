@@ -1,5 +1,18 @@
 <x-app-layout>
     <div class="max-w-5xl mx-auto py-12 px-6">
+
+        {{-- Notifikasi Berhasil --}}
+        @if (session('success'))
+            <div 
+                x-data="{ show: true }" 
+                x-init="setTimeout(() => show = false, 4000)" 
+                x-show="show"
+                class="mb-6 px-4 py-3 bg-green-100 border border-green-300 text-green-800 rounded-lg shadow transition"
+            >
+                {{ session('success') }}
+            </div>
+        @endif
+
         <h1 class="text-3xl font-bold mb-8 text-center text-green-700">Kelola Penyakit</h1>
 
         {{-- Form Tambah Penyakit --}}

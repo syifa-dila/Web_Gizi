@@ -8,10 +8,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Admin;
 use App\Models\Role;
 use App\Models\User;
-
-
-
-
+use App\Models\Gejala;
+use App\Models\Disease;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,9 +21,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
         RoleSeeder::class,
         AdminSeeder :: class,
-        // PasienSeeder::class,
-          // DiagnosesSeeder::class,
-        // DiagnosisGejalaSeeder::class,
+        GejalaSeeder::class,
+        DiseaseSeeder::class,
 
         ]);
 
