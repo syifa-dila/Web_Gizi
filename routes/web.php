@@ -70,10 +70,10 @@ Route::middleware(['auth', 'role:pasien'])->group(function () {
 });
 
 //resultCF
-Route::middleware('auth')->group(function (){
-Route::post('/resultcf/store', [ResultCfController::class, 'store'])->name('resultcf.store');
-Route::post('/diagnosis/store', [ResultCfController::class, 'store'])->name('diagnosis.store');
-Route::get('/resultcf/{pasiens_id}', [ResultCfController::class, 'show'])->name('resultcf.show');
+Route::middleware(['auth', 'role:pasien'])->group(function () {
+    Route::post('/resultcf/store', [ResultCfController::class, 'store'])->name('resultcf.store');
+// Route::post('/resultcf/store', [ResultCfController::class, 'store'])->name('resultcf.store');
+// Route::get('/resultcf/{pasiens_id}', [ResultCfController::class, 'show'])->name('resultcf.show');
 });
 
 //combine

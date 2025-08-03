@@ -8,32 +8,57 @@ use Illuminate\Support\Facades\DB;
 class ResultCfController extends Controller
 {
     public function store(Request $request)
-    {
-        // dd($request->all()); 
-        $request->validate([
-            'pasiens_id' => 'required|exists:pasiens,id',
-            'gejala' => 'required|array',
+{
+    $request->validate([
+        'pasiens_id' => 'required|exists:pasiens,id',
+        'gejala' => 'required|array',
+    ]);
+
+    $pasiensId = $request->input('pasiens_id');
+    $gejalaInput = $request->input('gejala'); // [gejala_id => nilai_cf]
+
+    foreach ($gejalaInput as $gejalasId => $cf) {
+        DB::table('result_cf')->insert([
+            'pasiens_id' => $pasiensId,
+            'gejalas_id' => $gejalasId,
+            'nilai_cf' => $cf,
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
-
-        $pasiensId = $request->input('pasiens_id');
-        $gejalaInput = $request->input('gejala'); // [gejala_id => nilai_cf]
-
-        foreach ($gejalaInput as $gejalasId => $cf) {
-            DB::table('result_cf')->insert([
-                'pasiens_id' => $pasiensId,
-                'gejalas_id' => $gejalasId,
-                'nilai_cf' => $cf,
-                'created_at' => now(),
-                'updated_at' => now()
-            ]);
-        }
-
-        // Langsung lanjut ke proses combine
-        // return redirect()->route('combination.process', ['pasiens_id' => $pasiensId]);
-        return redirect()->route('resultcf.show', ['pasiens_id' => $pasiensId])
-        ->with('success', 'Data berhasil disimpan. Lihat hasil CF sebelum melanjutkan.');
-
     }
+
+    // Langsung lanjut ke proses kombinasi CF
+    return redirect()->route('combination.process', ['pasiens_id' => $pasiensId]);
+    // return redirect()->route('resultcf.show', ['pasiens_id' => $pasiensId])
+}
+
+    // public function store(Request $request)
+    // {
+    //     // dd($request->all()); 
+    //     $request->validate([
+    //         'pasiens_id' => 'required|exists:pasiens,id',
+    //         'gejala' => 'required|array',
+    //     ]);
+
+    //     $pasiensId = $request->input('pasiens_id');
+    //     $gejalaInput = $request->input('gejala'); // [gejala_id => nilai_cf]
+
+    //     foreach ($gejalaInput as $gejalasId => $cf) {
+    //         DB::table('result_cf')->insert([
+    //             'pasiens_id' => $pasiensId,
+    //             'gejalas_id' => $gejalasId,
+    //             'nilai_cf' => $cf,
+    //             'created_at' => now(),
+    //             'updated_at' => now()
+    //         ]);
+    //     }
+
+    //     // Langsung lanjut ke proses combine
+    //     // return redirect()->route('combination.process', ['pasiens_id' => $pasiensId]);
+    //     return redirect()->route('resultcf.show', ['pasiens_id' => $pasiensId])
+    //     ->with('success', 'Data berhasil disimpan. Lihat hasil CF sebelum melanjutkan.');
+
+    // }
 
     public function show($pasiens_id)
     {
@@ -48,7 +73,7 @@ class ResultCfController extends Controller
             'pasiens_id' => $pasiens_id
         ]);
         
-        return redirect()->route('combination.process', ['pasiens_id' => $pasiensId]);
+        // return redirect()->route('combination.process', ['pasiens_id' => $pasiensId]);
 
     }
     

@@ -47,8 +47,6 @@ class CombinationController extends Controller
         }
 return redirect()->route('combinations.show', ['pasiens_id' => $pasiens_id])
     ->with('success', 'Proses diagnosa berhasil.');
-
-        // return redirect()->route('combinations.show', $pasiens_id)->with('success', 'Proses diagnosa berhasil.');
     }
 
 

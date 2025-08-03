@@ -20,7 +20,7 @@ class AdminSeeder extends Seeder
             'birth_date' => '1998-07-23',
             'gender' => 'Perempuan',
             'phone_number' => '081234567890',
-            'address' => 'Jl. Sehat No.1, Bandung',
+            'address' => 'Jl. Raya Jangari, Kademangan, Kec. Mande, Kabupaten Cianjur',
             'role_id' => 1, // diasumsikan 1 = admin
         ]);
 
