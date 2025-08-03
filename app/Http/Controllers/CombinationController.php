@@ -17,7 +17,7 @@ class CombinationController extends Controller
         // Ambil semua input gejala user berdasarkan pasien
         $result_cf = Result_cf::where('pasiens_id', $pasiens_id)->get();
 
-        // Jika tidak ada input dari user
+        // // Jika tidak ada input dari user
         if ($result_cf->isEmpty()) {
             return back()->with('error', 'Belum ada data gejala yang dipilih.');
         }
@@ -31,7 +31,8 @@ class CombinationController extends Controller
         foreach ($result_cf as $rcf) {
             $rules = Rules::where('gejalas_id', $rcf->gejalas_id)->get();
             if ($rules->isEmpty()) {
-                return back()->with('error', 'Gejala yang dipilih belum punya aturan diagnosa. Hubungi admin.');
+                continue;
+                // return back()->with('error', 'Gejala yang dipilih belum punya aturan diagnosa. Hubungi admin.');
             }
             foreach ($rules as $rule) {
                 $cf_user  = $rcf->nilai_cf;

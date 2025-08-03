@@ -79,7 +79,7 @@ Route::middleware(['auth', 'role:pasien'])->group(function () {
 //combine
 Route::middleware(['auth', 'role:pasien'])->group(function () {
 Route::get('/combination/process/{pasiens_id}', [CombinationController::class, 'process'])->name('combination.process');
-Route::get('/combination/show/{pasiens_id}', [CombinationController::class, 'show'])->name('combinations.show');
+Route::get('/combinations/show/{pasiens_id}', [CombinationController::class, 'show'])->name('combinations.show');
 
 });
 

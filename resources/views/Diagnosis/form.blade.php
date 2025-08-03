@@ -15,11 +15,9 @@
                 </div>
                 <p class="text-sm text-gray-600">Silakan pilih tingkat keyakinan terhadap gejala yang dialami anak.</p>
             </div>
-
             <form action="{{ route('resultcf.store') }}" method="POST" class="bg-white border border-green-200 rounded-lg p-6 shadow-sm">
                 @csrf
                 <input type="hidden" name="pasiens_id" value="{{ $pasiens->id }}">
-
                 @php
                     $pilihan = [
                         'Sangat Yakin' => 1.0,
